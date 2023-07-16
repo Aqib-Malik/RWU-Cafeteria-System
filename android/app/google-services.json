@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372969643221",
+    "project_id": "rwu-cafeteria-system",
+    "storage_bucket": "rwu-cafeteria-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372969643221:android:1969f4d6b1c81b0404565c",
+        "android_client_info": {
+          "package_name": "com.example.rwu_cafeteria_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372969643221-eacklkcp4n4shjftj7je8a9qld0esel2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQdZtzUnUsjdlGeBeYgn4791pppYl-wTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372969643221-eacklkcp4n4shjftj7je8a9qld0esel2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
