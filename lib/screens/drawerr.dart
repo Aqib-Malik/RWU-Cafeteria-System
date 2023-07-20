@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rwu_cafeteria_system/controller/cart_controller.dart';
 import 'package:rwu_cafeteria_system/screens/cart/cart.dart';
 import 'package:rwu_cafeteria_system/screens/feedback_screen/feedback_screen.dart';
 import 'package:rwu_cafeteria_system/screens/foods/foods.dart';
@@ -9,6 +10,8 @@ import 'package:rwu_cafeteria_system/screens/home/home.dart';
 import 'package:rwu_cafeteria_system/screens/logout_screen.dart';
 import 'package:rwu_cafeteria_system/screens/orders.dart';
 import 'package:rwu_cafeteria_system/utils/color.dart';
+NewCartController _newcartController = Get.put(NewCartController());
+
 
 class Drawerr {
   ///Drawer
@@ -91,7 +94,35 @@ class Drawerr {
               Icons.shopping_cart_outlined,
               color: Colors.green,
             ),
-            title: Text("My Cart"),
+            title: Row(
+              children: [
+                Text("My Cart"),
+                Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _newcartController.products.length != 0
+                          ? Text(
+                              _newcartController.products.length.toString(),
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          : SizedBox(
+                              width: 0,
+                              height: 0,
+                            ),
+                      ClipOval(
+                        child: Icon(
+                          Icons.shopping_cart_sharp,
+                          color: Colors.amber,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             trailing: Icon(
               Icons.navigate_next,
             ),

@@ -100,6 +100,7 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                         boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
                       ),
                       child: TextFormField(
+                        keyboardType: TextInputType.phone,
                         controller: _phoneController,
                         decoration: InputDecoration(
                           labelText: 'Phone Number',
@@ -107,10 +108,13 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                           contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                         ),
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your phone number';
-                          }
-                          return null;
+                         if (value!.isEmpty) {
+      return 'Please enter your phone number';
+    }
+    if (value.length > 11) {
+      return 'Phone number should not exceed 11 characters';
+    }
+    return null;
                         },
                       ),
                     ),
@@ -161,7 +165,9 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
           'address': _addressController.text,
           'item': _cartController.products.map((product) => product.toMap()).toList(),
             'totalPrice': totalPrice,
-           'dateTime':DateTime.now() 
+           'dateTime':DateTime.now() ,
+           'is_aprove':false,
+           'is_reject':false,
 
         }).then((value) {
                 EasyLoading.dismiss();
