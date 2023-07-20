@@ -32,7 +32,20 @@ class LoginScreen extends StatelessWidget {
       return 'Unknown error occurred';
     }
   }
-
+Future<String?> _recoverPassword(String email) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+   
+    return null;
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      return 'User not found';
+    }
+    return 'Failed to send password reset email';
+  } catch (e) {
+    return 'Unknown error occurred';
+  }
+}
   Future<String?> _signupUser(SignupData data) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -51,11 +64,11 @@ class LoginScreen extends StatelessWidget {
     }
   }
 
-  Future<String?> _recoverPassword(String name) {
-    return Future.delayed(loginTime).then((_) {
-      return null;
-    });
-  }
+  // Future<String?> _recoverPassword(String name) {
+  //   return Future.delayed(loginTime).then((_) {
+  //     return null;
+  //   });
+  // }
 
   Future<String?>? _signupConfirm(String error, LoginData data) {
     return null;
@@ -144,11 +157,12 @@ class LoginScreen extends StatelessWidget {
           //   ),
           // );
         },
-        onRecoverPassword: (name) {
-          debugPrint('Recover password info');
-          debugPrint('Name: $name');
-          return _recoverPassword(name);
-        },
+        onRecoverPassword: _recoverPassword,
+        
+  //        (email) async {
+  //   String? errorMessage = await _recoverPassword(email);
+  //   return errorMessage;
+  // },
         headerWidget: const IntroWidget(),
       ),
     );
